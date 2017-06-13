@@ -8,18 +8,32 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController
+{
+    @IBOutlet weak var futureLabel: UILabel!
+    @IBOutlet weak var preCogsLabel: UILabel!
 
-    override func viewDidLoad() {
+    override func viewDidLoad()
+    {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    @IBAction func onDrag(_ sender: UIPanGestureRecognizer)
+    {
+        print("drag")
+        
+        let point = sender.location(in: view)
+        print(point)
+        futureLabel.center = point
+        
+        if sender.state == .ended
+        {
+        UIView.animate(withDuration: 0.75, animations:
+        {
+            self.futureLabel.center = self.view.center
+        })
+        }
     }
-
 
 }
 
